@@ -1,0 +1,32 @@
+<div class="container main-container">
+    <h1>Canal de Youtube</h1>
+    <hr>
+    <div class="card-columns">
+        <div class="card animated fadeIn" *ngFor="let video of videos">
+            <img class="card-img-top" [src]="video.thumbnails.high.url" [alt]="video.title">
+            <div class="card-body">
+                <h5 class="card-title">{{video.title}}</h5>
+                <button (click)="verVideo(video)" type="button" class="btn btn-lg btn-outline-danger btn-block responsive-width">Ver en YouTube</button>
+            </div>
+        </div>
+    </div>
+
+    <button (click)="cargarMas()" type="button" class="btn btn-danger btn-block">Cargar más</button>
+
+</div>
+
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" *ngIf="videoSelected">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel">{{videoSelected.title}}</h5>
+            </div>
+            <div class="modal-body">
+                <iframe width="100%" height="315" [src]="videoSelected.resourceId.videoId | videoYT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
